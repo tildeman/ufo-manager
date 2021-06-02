@@ -1,0 +1,33 @@
+*{
+    font-family:sans-serif;
+}
+.install-bg{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    box-sizing: border-box;
+    background-image: linear-gradient(to bottom right,#22dddd,#0b9292);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.install-box{
+    position:absolute;
+    border: black 1px solid;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color:white;
+    border-radius:15px;
+    width:500px;
+    padding:5px;
+}
+.install-box h1{
+    margin-top:0;
+}
+.install-box button{
+    width:75px;
+    height:25px;
+    border-radius:5px;
+}
