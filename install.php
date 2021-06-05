@@ -28,7 +28,7 @@
 			}
 			else if ($_SESSION["stepno"]==2){
 				$h1="Thiết lập cơ sở dữ liệu";
-				$p="&lt;thiết lập csdl&gt;";
+				$p=file_get_contents("fragmented_htmls/install_1.html");
 				$prev_css="";
 				$prev_txt="Quay lại";
 				$next_txt="Tiếp";
