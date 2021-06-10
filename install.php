@@ -34,13 +34,20 @@
 				$next_txt="Tiếp";
 			}
 			else if ($_SESSION["stepno"]==3){
+				$h1="Thiết lập cơ sở dữ liệu";
+				$p=file_get_contents("fragmented_htmls/install_2.html");
+				$prev_css="";
+				$prev_txt="Quay lại";
+				$next_txt="Tiếp";
+			}
+			else if ($_SESSION["stepno"]==4){
 				$h1="Vị trí cài đặt trang web";
 				$p="&lt;thiết lập vt cài trang web&gt;";
 				$prev_css="";
 				$prev_txt="Quay lại";
 				$next_txt="Tiếp";
 			}
-			else if ($_SESSION["stepno"]==4){
+			else if ($_SESSION["stepno"]==5){
 				$h1="Hoàn thành cài đặt XMake";
 				$p="Để quay trở lại màn hình chính, bấm \"OK\"";
 				$prev_css="";

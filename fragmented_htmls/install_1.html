@@ -1,11 +1,5 @@
 Để bắt đầu, bạn cần có một cơ sở dữ liệu để lưu hết các nội dung web.<br>
-Hãy đặt tên cho cơ sở dữ liệu này:<br>
-<input name="db-name" type="text" placeholder="Tên CSDL"><br>
-Để truy cập cơ sở dữ liệu này, bạn cần có một người dùng với toàn bộ quyền truy cập.<br>
-Hãy đặt tên cho người dùng này:<br>
-<input name="db-user" type="text" placeholder="Tên người dùng"><br>
-Hãy đặt mật khẩu cho người dùng này:<br>
-<input name="db-pass" type="password" placeholder="Mật khẩu"><br>
-Nếu bạn đang sử dụng dịch vụ hosting từ bên thứ ba, và/hoặc đã tự thiết lập một cơ sở dữ liệu thông qua các công cụ có sẵn, bạn có thể điền vào đây:<br>
-<input name="db-user" type="text" placeholder="Tên người dùng"><br>
-<input name="db-pass" type="password" placeholder="Mật khẩu"><br>
+<input type="radio" name="hosting" value="local" checked>
+<label for="local">Tôi đang sử dụng một máy tính ở nhà có cài XAMPP, WAMP, v.v. đang sử dụng lựa chọn mặc định của MySQL</label><br>
+<input type="radio" name="hosting" value="remote">
+<label for="remote">Tôi đang sử dụng dịch vụ hosting của bên thứ ba (VD: matbao.vn)</label>
