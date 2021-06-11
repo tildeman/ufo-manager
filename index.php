@@ -20,17 +20,22 @@ $result=$qr->fetch_array();
 				<img src="images/xmake-logo.png" id="home-btn">
 			</a>
 			<div class="menu-btn">
-				<a href=".">Bài viết</a>
+				<a href="?xmakereq=baiviet">Bài viết</a>
 			</div>
 			<div class="menu-btn">
-				<a href=".">Giao diện</a>
+				<a href="?xmakereq=giaodien">Giao diện</a>
 			</div>
 			<div class="menu-btn">
-				<a href=".">Tiện ích</a>
+				<a href="?xmakereq=tienich">Tiện ích</a>
 			</div>
 			<div class="menu-btn">
-				<a href=".">Đăng xuất</a>
+				<a href="?xmakereq=logout">Đăng xuất</a>
 			</div>
+		</div>
+		<div id="body">
+			<?php
+				include $config["docroot"]."/xuli.php";
+			?>
 		</div>
 	</div>
 </body>

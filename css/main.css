@@ -8,7 +8,7 @@
     left:0;
     right:0;
     box-sizing: border-box;
-    background-image: linear-gradient(to bottom right,#44dddd,#22aaaa);
+    background-image: linear-gradient(to bottom right,#44dddd,#229999);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -32,11 +32,11 @@
     border-radius:5px;
 }
 #menubar{
-    width:97%;
+    width:98%;
     margin: 5px 1% 0 1%;
     background-color: #333333;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     height:50px;
 }
 #home-btn{
@@ -57,4 +57,12 @@
     line-height: 50px;
     text-decoration: none;
     color:#ffffff;
+}
+#body{
+    width: calc(98% - 20px);
+    margin: 0 1%;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 0 0 5px 5px;
+    min-height: 100px;
 }
