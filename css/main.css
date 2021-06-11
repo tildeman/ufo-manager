@@ -1,7 +1,7 @@
 *{
     font-family:sans-serif;
 }
-.install-bg{
+.main-bg,.install-bg{
     position:absolute;
     top:0;
     bottom:0;
@@ -30,4 +30,31 @@
     width:75px;
     height:25px;
     border-radius:5px;
+}
+#menubar{
+    width:97%;
+    margin: 5px 1% 0 1%;
+    background-color: #333333;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height:50px;
+}
+#home-btn{
+    float:left;
+    padding: 0 10px;
+}
+.menu-btn{
+    box-sizing: border-box;
+    height:100%;
+    float:left;
+    border: #888888 solid;
+    border-width: 0 0 0 1px;
+    width: calc(calc(100% - 120px) / 4);
+    text-align: center;
+}
+.menu-btn a{
+    vertical-align: middle;
+    line-height: 50px;
+    text-decoration: none;
+    color:#ffffff;
 }
