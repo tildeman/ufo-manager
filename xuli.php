@@ -2,7 +2,7 @@
 if (isset($_GET["xmakereq"])){
 	switch ($_GET["xmakereq"]){
 		case "baiviet":
-			echo "Bài viết";
+			include "wrappers/baiviet.php";
 			break;
 		case "giaodien":
 			echo "Giao diện";

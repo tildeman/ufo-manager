@@ -37,11 +37,11 @@
     background-color: #333333;
     box-sizing: border-box;
     border-radius: 5px 5px 0 0;
-    height:50px;
+    height:60px;
 }
 #home-btn{
     float:left;
-    padding: 0 10px;
+    padding: 5px 0;
 }
 .menu-btn{
     box-sizing: border-box;
@@ -49,12 +49,12 @@
     float:left;
     border: #888888 solid;
     border-width: 0 0 0 1px;
-    width: calc(calc(100% - 120px) / 4);
+    width: calc(calc(100% - 200px) / 4);
     text-align: center;
 }
 .menu-btn a{
     vertical-align: middle;
-    line-height: 50px;
+    line-height: 60px;
     text-decoration: none;
     color:#ffffff;
 }
@@ -65,4 +65,29 @@
     background-color: #ffffff;
     border-radius: 0 0 5px 5px;
     min-height: 100px;
+}
+.std_table{
+    width:100%;
+    border: #000000 1px solid;
+    border-spacing: 0;
+    text-align: center;
+}
+.std_table th{
+    background-color: #ddffdd;
+    border: #000000 1px solid;
+    padding: 10px;
+    border-spacing: 0;
+}
+.std_table td{
+    background-color: #ffffdd;
+    border: #000000 1px solid;
+    padding: 10px;
+    border-spacing: 0;
+}
+.std_table textarea{
+    resize:vertical;
+    width:100%;
+}
+.editor{
+    max-width: 1200px;
 }
