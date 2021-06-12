@@ -115,15 +115,22 @@ else{
 			<th>Tên</th>
 			<th>Tác giả</th>
 		</tr>
-	<?php
-	$kq=$bv->get_list_baiviet();
-	foreach ($kq as $kq_item){
-		?><tr>
+		<?php
+		$kq=$bv->get_list_baiviet();
+		foreach ($kq as $kq_item){
+		?>
+		<tr>
 			<td><?=$kq_item["id"]?></td>
 			<td><a href="?xmakereq=baiviet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
 			<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
-		</tr><?php
-	}
-	?></table><?php
+		</tr>
+		<?php
+		}
+		?>
+		<tr>
+			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=baiviet&baiviet=0">Mới</a></td>
+		</tr>
+	</table>
+	<?php
 }
 ?>
