@@ -15,11 +15,14 @@ if (isset($_GET["baiviet"])){
 	?>
 	<?php
 	if (isset($_POST["submit"])){
-		
+		$quyen=0;
+		if (isset($_POST["user"])) $quyen+=4;
+		if (isset($_POST["group"])) $quyen+=2;
+		if (isset($_POST["other"])) $quyen+=1;
+		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],0,$_POST["category"],$quyen);
 	}
 	?>
 	<form method="post">
-		<input type="hidden" name="id" value="<?=$_GET["baiviet"]?>">
 		<table class="std_table">
 			<tr>
 				<th>Tên thuộc tính</th>
@@ -44,9 +47,9 @@ if (isset($_GET["baiviet"])){
 			<tr>
 				<td>Quyền chỉnh sửa</td>
 				<td>
-					<input type="checkbox" name="user" <?=floor($prefill_result["quyen"]/4)%2?"checked":""?>>Tôi
-					<input type="checkbox" name="group" <?=floor($prefill_result["quyen"]/2)%2?"checked":""?>>Nhóm của tôi
-					<input type="checkbox" name="other" <?=$prefill_result["quyen"]%2?"checked":""?>>Những người còn lại trên XMake
+					<input type="checkbox" name="user" value="y" <?=floor($prefill_result["quyen"]/4)%2?"checked":""?>>Tôi
+					<input type="checkbox" name="group" value="y" <?=floor($prefill_result["quyen"]/2)%2?"checked":""?>>Nhóm của tôi
+					<input type="checkbox" name="other" value="y" <?=$prefill_result["quyen"]%2?"checked":""?>>Những người còn lại trên XMake
 				</td>
 			</tr>
 		</table>
@@ -78,7 +81,7 @@ if (isset($_GET["baiviet"])){
 					'|',
 					'outdent',
 					'indent',
-					'|',
+					'-',
 					'superscript',
 					'subscript',
 					'specialCharacters',
@@ -91,7 +94,8 @@ if (isset($_GET["baiviet"])){
 					'fontBackgroundColor',
 					'removeFormat',
 					'htmlEmbed'
-				]
+				],
+				shouldNotGroupWhenFull: true
 			},
 			language: 'vi',
 			licenseKey: '',	
