@@ -1,8 +1,7 @@
 <?php
 require("config.php");
+session_start();
 $conn=new mysqli($config["db_server"],$config["db_uname"],$config["db_pass"],$config["db_name"]);
-$qr=$conn->query("SELECT * from bai_viet");
-$result=$qr->fetch_array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
