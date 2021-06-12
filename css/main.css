@@ -1,6 +1,7 @@
 *{
     font-family:sans-serif;
 }
+/* Global attributes */
 .main-bg{
     position:absolute;
     top:0;
@@ -12,6 +13,23 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.notification{
+    box-sizing: border-box;
+    border: #505050 1px solid;
+    background-color: #aaaaaa;
+    width: 98%;
+    margin: 5px 1%;
+    min-height: 60px;
+}
+.notification_error{
+    background-color: #ffaaaa;
+    border-color: #ff5050;
+}
+.notification span{
+    line-height: 60px;
+    padding-left: 20px;
+}
+/* Login page */
 .login-box{
     position:absolute;
     border: black 1px solid;
@@ -109,20 +127,4 @@
     width:100%;
     font-size:14pt;
     margin-top:5px;
-}
-.notification{
-    box-sizing: border-box;
-    border: #505050 1px solid;
-    background-color: #aaaaaa;
-    width: 98%;
-    margin: 5px 1%;
-    min-height: 60px;
-}
-.notification_error{
-    background-color: #ffaaaa;
-    border-color: #ff5050;
-}
-.notification span{
-    line-height: 60px;
-    padding-left: 20px;
 }

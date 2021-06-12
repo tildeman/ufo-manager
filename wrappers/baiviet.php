@@ -95,10 +95,12 @@ if (isset($_GET["baiviet"])){
 					'removeFormat',
 					'htmlEmbed'
 				],
-				shouldNotGroupWhenFull: true
 			},
 			language: 'vi',
 			licenseKey: '',	
+		} )
+		.then( editor => {
+			editor.isReadOnly=false;
 		} )
 		.catch( error => {
 			console.error( error );
