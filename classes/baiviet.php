@@ -4,5 +4,8 @@ class Baiviet{
 		global $conn;
 		return $conn->query("SELECT * FROM bai_viet");
 	}
+	function insert_baiviet(){
+		global $conn;
+	}
 }
 ?>

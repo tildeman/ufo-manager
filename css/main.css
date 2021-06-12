@@ -91,3 +91,8 @@
 .editor{
     max-width: 1200px;
 }
+.form_submit{
+    width:100%;
+    font-size:14pt;
+    margin-top:5px;
+}
