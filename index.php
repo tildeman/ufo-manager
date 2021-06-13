@@ -67,6 +67,7 @@ if (isset($_POST["username"])&&isset($_POST["password"])){
 			<div id="body">
 				<?php
 					include $config["docroot"]."/xuli.php";
+					$conn->close();
 				?>
 			</div>
 			<?php
