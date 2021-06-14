@@ -37,6 +37,9 @@ if (isset($_POST["username"])&&isset($_POST["password"])){
 <body>
 	<script>
 		console.log("Powered by XMake :)");
+		function goto(l){
+			location="?xmakereq="+l;
+		}
 	</script>
 	<div class="main-bg">
 		<?php
@@ -51,18 +54,18 @@ if (isset($_POST["username"])&&isset($_POST["password"])){
 				<a href=".">
 					<img src="images/xmake-logo.png" id="home-btn">
 				</a>
-				<div class="menu-btn">
-					<a href="?xmakereq=baiviet">Bài viết</a>
-				</div>
-				<div class="menu-btn">
-					<a href="?xmakereq=giaodien">Giao diện</a>
-				</div>
-				<div class="menu-btn">
-					<a href="?xmakereq=tienich">Tiện ích</a>
-				</div>
-				<div class="menu-btn">
-					<a href="?xmakereq=logout">Đăng xuất</a>
-				</div>
+				<button class="menu-btn" onclick="goto('baiviet')">
+					Bài viết
+				</button>
+				<button class="menu-btn" onclick="goto('giaodien')">
+					Giao diện
+				</button>
+				<button class="menu-btn" onclick="goto('tienich')">
+					Tiện ích
+				</button>
+				<button class="menu-btn" onclick="goto('logout')">
+					Đăng xuất
+				</button>
 			</div>
 			<div id="body">
 				<?php

@@ -80,15 +80,12 @@
     height:100%;
     float:left;
     border: #888888 solid;
+    background-color: #0000;
+    color: #fff;
     border-width: 0 0 0 1px;
     width: calc(calc(100% - 200px) / 4);
     text-align: center;
-}
-.menu-btn a{
-    vertical-align: middle;
-    line-height: 60px;
-    text-decoration: none;
-    color:#ffffff;
+    font-size: 14pt;
 }
 #body{
     width: calc(98% - 20px);
