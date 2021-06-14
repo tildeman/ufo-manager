@@ -52,6 +52,7 @@ if (isset($_GET["baiviet"])){
 			$quyen=$prefill_result["quyen"];
 		}
 		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],0,$_POST["category"],$quyen);
+		$prefill_result=$conn->query("SELECT * from bai_viet where id=".$conn->real_escape_string($_GET["baiviet"]))->fetch_array();
 	}
 	?>
 	<form method="post">
