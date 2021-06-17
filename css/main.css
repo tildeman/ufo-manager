@@ -1,127 +1,145 @@
 *{
-    font-family:sans-serif;
+	font-family:sans-serif;
 }
 /* Global attributes */
 .main-bg{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    box-sizing: border-box;
-    background-image: linear-gradient(to bottom right,#44dddd,#229999);
-    background-size: cover;
-    background-repeat: no-repeat;
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	box-sizing: border-box;
+	background-image: linear-gradient(to bottom right,#44dddd,#229999);
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 .notification{
-    box-sizing: border-box;
-    border: #505050 1px solid;
-    background-color: #aaaaaa;
-    width: 98%;
-    margin: 5px 1%;
-    min-height: 60px;
+	box-sizing: border-box;
+	border: #505050 1px solid;
+	background-color: #aaaaaa;
+	width: 98%;
+	margin: 5px 1%;
+	min-height: 60px;
 }
 .notification_error{
-    background-color: #ffaaaa;
-    border-color: #ff5050;
+	background-color: #ffaaaa;
+	border-color: #ff5050;
 }
 .notification span{
-    line-height: 60px;
-    padding-left: 20px;
+	line-height: 60px;
+	padding-left: 20px;
 }
 /* Login page */
 .login-box{
-    position:absolute;
-    border: black 1px solid;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    background-color:white;
-    border-radius:10px;
-    width:500px;
-    padding:5px;
+	position:absolute;
+	border: black 1px solid;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	background-color:white;
+	border-radius:10px;
+	width:500px;
+	padding:5px;
 }
 .login-box h1{
-    margin-top:0;
+	margin-top:0;
 }
 .login-expand{
-    width: calc(100% - 20px);
-    padding: 5px;
-    margin: 5px;
+	width: calc(100% - 20px);
+	padding: 5px;
+	margin: 5px;
 }
 #login-submit{
-    padding: 5px;
-    margin: 5px;
-    float:right;
+	padding: 5px;
+	margin: 5px;
+	float:right;
 
 }
 .login-box span{
-    margin: 0;
+	margin: 0;
 }
 .btn{
-    width:75px;
-    height:25px;
-    border-radius:5px;
+	width:75px;
+	height:25px;
+	border-radius:5px;
 }
 #menubar{
-    width:98%;
-    margin: 5px 1% 0 1%;
-    background-color: #333333;
-    box-sizing: border-box;
-    border-radius: 5px 5px 0 0;
-    height:60px;
+	width:98%;
+	margin: 5px 1% 0 1%;
+	background-color: #333333;
+	box-sizing: border-box;
+	border-radius: 5px 5px 0 0;
+	height:60px;
 }
 #home-btn{
-    float:left;
-    padding: 5px 0;
+	float:left;
+	padding: 5px 0;
 }
 .menu-btn{
-    box-sizing: border-box;
-    height:100%;
-    float:left;
-    border: #888888 solid;
-    background-color: #0000;
-    color: #fff;
-    border-width: 0 0 0 1px;
-    width: calc(calc(100% - 200px) / 4);
-    text-align: center;
-    font-size: 14pt;
+	box-sizing: border-box;
+	height:100%;
+	float:left;
+	border: #888888 solid;
+	background-color: #0000;
+	color: #fff;
+	border-width: 0 0 0 1px;
+	width: calc(calc(100% - 200px) / 4);
+	text-align: center;
+	font-size: 14pt;
 }
 #body{
-    width: calc(98% - 20px);
-    margin: 0 1%;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 0 0 5px 5px;
-    min-height: 100px;
+	width: calc(98% - 20px);
+	margin: 0 1%;
+	padding: 10px;
+	background-color: #ffffff;
+	border-radius: 0 0 5px 5px;
+	min-height: 100px;
+	float:left;
 }
 .std_table{
-    width:100%;
-    border: #000000 1px solid;
-    border-spacing: 0;
-    text-align: center;
+	width:100%;
+	border: #000000 1px solid;
+	border-spacing: 0;
+	text-align: center;
 }
 .std_table th{
-    background-color: #ddffdd;
-    border: #000000 1px solid;
-    padding: 10px;
-    border-spacing: 0;
+	background-color: #ddffdd;
+	border: #000000 1px solid;
+	padding: 10px;
+	border-spacing: 0;
 }
 .std_table td{
-    background-color: #ffffdd;
-    border: #000000 1px solid;
-    padding: 10px;
-    border-spacing: 0;
+	background-color: #ffffdd;
+	border: #000000 1px solid;
+	padding: 10px;
+	border-spacing: 0;
 }
 .std_table textarea{
-    resize:vertical;
-    width:100%;
+	resize:vertical;
+	width:100%;
 }
 .editor{
-    max-width: 1200px;
+	max-width: 1200px;
 }
 .form_submit{
-    width:100%;
-    font-size:14pt;
-    margin-top:5px;
+	width:100%;
+	font-size:14pt;
+	margin-top:5px;
+}
+.gditem{
+	width: 120px;
+	padding: 10px;
+	margin: 10px;
+	background-color: #ccffff;
+	text-align: center;
+	border: #000000 1px solid;
+	border-radius: 10px;
+	float:left;
+}
+.copyright{
+	width: 98%;
+	margin: 5px 1%;
+	color: #666;
+	font-size: 8pt;
+	float:left;
 }

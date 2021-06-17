@@ -5,7 +5,7 @@ if (isset($_GET["xmakereq"])){
 			include "wrappers/baiviet.php";
 			break;
 		case "giaodien":
-			echo "Giao diện";
+			include "wrappers/giaodien.php";
 			break;
 		case "tienich":
 			echo "Tiện ích";
