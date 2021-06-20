@@ -141,30 +141,118 @@ if (isset($_GET["baiviet"])){
 	<?php
 }
 else{
-	//Mặc định: hiển thị danh sách tất cả các bài viết
+	//Mặc định: hiển thị danh sách tất cả các phân loại bài viết
 	?>
 	<table class="std_table">
 		<tr>
 			<th>ID</th>
 			<th>Tên</th>
-			<th>Tác giả</th>
+			<th>Hiển thị</th>
 		</tr>
 		<?php
-		$kq=$bv->get_list_baiviet();
+		$kq=$bv->get_list_cat();
 		foreach ($kq as $kq_item){
-		?>
-		<tr>
-			<td><?=$kq_item["id"]?></td>
-			<td><a href="?xmakereq=baiviet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
-			<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
-		</tr>
-		<?php
+			?>
+			<tr>
+				<td <?=$kq_item["cap"]>=2?"style='background-color: #ffffff;'":""?>><?=$kq_item["id"]?></td>
+				<td <?=$kq_item["cap"]>=2?"style='background-color: #ffffff;'":""?>><a href="?xmakereq=baiviet&cat=<?=$kq_item["id"]?>"><?=$kq_item["ten"]?></a></td>
+				<td <?=$kq_item["cap"]>=2?"style='background-color: #ffffff;'":""?>><?=$kq_item["hien_thi"]?"Có":"Không"?></td>
+			</tr>
+			<?php
 		}
 		?>
 		<tr>
-			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=baiviet&baiviet=0">Mới</a></td>
+			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=baiviet&editcat=0">Mới</a></td>
 		</tr>
 	</table>
 	<?php
+	if (isset($_GET["editcat"])){
+		if (isset($_POST["submit_cat"])){
+			$hienthi=0;
+			if (isset($_POST["hien_thi"])) $hienthi=1;
+			if ($_POST["cha"]==0){
+				$cap=1;
+			}
+			else{
+				$cap=$conn->query("SELECT cap FROM phan_loai WHERE id='".$conn->real_escape_string($_POST["cha"])."'")->fetch_array()["cap"]+1;
+			}
+			$bv->insert_cat($_GET["editcat"],$_POST["ten"],$hienthi,$cap,$_POST["cha"]);
+		}
+		if ($_GET["editcat"]==0){
+			$prefill_result_cat=array(
+				"ten" => "",
+				"hien_thi" => 1
+			);
+		}
+		else{
+			$prefill_result_cat=$conn->query("SELECT * FROM phan_loai WHERE id='".$conn->real_escape_string($_GET["editcat"])."'")->fetch_array();
+		}
+		?>
+		<br>
+		<form method="post">
+			<table class="std_table">
+				<tr>
+					<th>Tên</th>
+					<th>Giá trị</th>
+				</tr>
+				<tr>
+					<td>Tên</td>
+					<td><textarea name="ten"><?=$prefill_result_cat["ten"]?></textarea></td>
+				</tr>
+				<tr>
+					<td>Hiển thị</td>
+					<td><input type="checkbox" name="hien_thi" <?=$prefill_result_cat["hien_thi"]?"checked":""?>></td>
+				</tr>
+				<tr>
+					<td>Phân loại cha</td>
+					<td>
+						<select name="cha">
+							<option value="0">(Không có)</option>
+							<?php
+							foreach($kq as $kq_item){
+								if ($kq_item["id"]!=$_GET["editcat"]){
+									?>
+									<option value="<?=$kq_item["id"]?>"><?=$kq_item["ten"]?></option>
+									<?php
+								}
+							}
+							?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" style="background-color: #ddffdd;"><input type="submit" name="submit_cat" value="OK"></td>
+				</tr>
+			</table>
+		</form>
+		<?php
+	}
+	if (isset($_GET["cat"])){
+		?>
+		<br>
+		<table class="std_table">
+			<tr>
+				<th>ID</th>
+				<th>Tên</th>
+				<th>Tác giả</th>
+			</tr>
+			<?php
+			$kq=$bv->get_list_baiviet($_GET["cat"]);
+			foreach ($kq as $kq_item){
+				?>
+				<tr>
+					<td><?=$kq_item["id"]?></td>
+					<td><a href="?xmakereq=baiviet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
+					<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
+				</tr>
+				<?php
+			}
+			?>
+			<tr>
+				<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=baiviet&baiviet=0">Mới</a></td>
+			</tr>
+		</table>
+		<?php
+	}
 }
 ?>

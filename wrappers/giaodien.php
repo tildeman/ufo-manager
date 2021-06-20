@@ -1,6 +1,12 @@
 <?php
 if (isset($_GET["muc"])){
-	echo $_GET["muc"];
+	switch($_GET["muc"]){
+		case "thanhdoc":
+			echo "thanhdoc";
+			break;
+		default:
+			echo "aaa";
+	}
 }
 else{
 	?>
