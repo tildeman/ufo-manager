@@ -1,8 +1,12 @@
 <?php
 class Baiviet{
-	function get_list_cat(){
+	function get_list_cat_c1(){
 		global $conn;
-		return $conn->query("SELECT * FROM phan_loai");
+		return $conn->query("SELECT * FROM phan_loai WHERE cap=1");
+	}
+	function get_list_cat_by_cha($cha){
+		global $conn;
+		return $conn->query("SELECT * FROM phan_loai WHERE cha='".$conn->real_escape_string($cha)."'");
 	}
 	function get_list_baiviet($rq){
 		global $conn;
