@@ -54,8 +54,8 @@ if (isset($_POST["username"])&&isset($_POST["password"])){
 				<a href=".">
 					<img src="images/xmake-logo.png" id="home-btn">
 				</a>
-				<button class="menu-btn" onclick="goto('baiviet')">
-					Bài viết
+				<button class="menu-btn" onclick="goto('noidung')">
+					Nội dung
 				</button>
 				<button class="menu-btn" onclick="goto('giaodien')">
 					Giao diện

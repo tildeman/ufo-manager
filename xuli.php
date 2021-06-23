@@ -1,8 +1,8 @@
 <?php
 if (isset($_GET["xmakereq"])){
 	switch ($_GET["xmakereq"]){
-		case "baiviet":
-			include "wrappers/baiviet.php";
+		case "noidung":
+			include "wrappers/phanloai.php";
 			break;
 		case "giaodien":
 			include "wrappers/giaodien.php";

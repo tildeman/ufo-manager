@@ -2,25 +2,6 @@
 include $config["docroot"]."/classes/baiviet.php";
 $bv=new Baiviet();
 /*
-Hàm cấp/cha
-*/
-function captcha($cha){
-	global $bv;
-	$ds_cha=$bv->get_list_cat_by_cha($cha);
-	if ($ds_cha->num_rows!=0){
-		foreach ($ds_cha as $dsci){
-			?>
-			<tr>
-				<td <?=$dsci["cap"]>=2?"style='background-color: #ffffff;'":""?>><?=$dsci["id"]?></td>
-				<td <?=$dsci["cap"]>=2?"style='background-color: #ffffff;'":""?>><a href="?xmakereq=baiviet&cat=<?=$dsci["id"]?>"><?=$dsci["ten"]?></a></td>
-				<td <?=$dsci["cap"]>=2?"style='background-color: #ffffff;'":""?>><?=$dsci["hien_thi"]?"Có":"Không"?></td>
-			</tr>
-			<?php
-			captcha($dsci["id"]);
-		}
-	}
-}
-/*
 Phần chỉnh sửa bài viết
 */
 if (isset($_GET["baiviet"])){
@@ -73,10 +54,12 @@ if (isset($_GET["baiviet"])){
 		else{
 			$quyen=$prefill_result["quyen"];
 		}
-		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],0,$_POST["category"],$quyen);
+		$category=implode(" ",$_POST["category"]);
+		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],0,$category,$quyen);
 		$prefill_result=$conn->query("SELECT * from bai_viet where id=".$conn->real_escape_string($_GET["baiviet"]))->fetch_array();
 	}
 	?>
+	<h1>Chỉnh sửa bài viết</h1>
 	<form method="post">
 		<table class="std_table">
 			<tr>
@@ -96,8 +79,18 @@ if (isset($_GET["baiviet"])){
 				<td><textarea name="content" class="editor"><?=$prefill_result["noi_dung"]?></textarea></td>
 			</tr>
 			<tr>
-				<td>Danh mục</td>
-				<td><textarea name="category" <?=$edit_mode?"":"readonly"?>></textarea></td>
+				<td>Phân loại</td>
+				<td>
+					<?php
+						$arr_pl=array_flip(explode(" ",$prefill_result["phan_loai"]));
+						$list_pl=$conn->query("SELECT * FROM phan_loai");
+						foreach ($list_pl as $pl_item){
+							?>
+							<input type="checkbox" name="category[]" value="<?=$pl_item["id"]?>" <?=isset($arr_pl[$pl_item["id"]])?"checked":""?> <?=$edit_mode?"":"disabled"?>><?=$pl_item["ten"]?><br>
+							<?php
+						}
+					?>
+				</td>
 			</tr>
 			<tr>
 				<td>Quyền chỉnh sửa</td>
@@ -162,115 +155,34 @@ if (isset($_GET["baiviet"])){
 	</script>
 	<?php
 }
-else{
-	//Mặc định: hiển thị danh sách tất cả các phân loại bài viết
-	if (isset($_POST["submit_cat"])){
-		$hienthi=0;
-		if (isset($_POST["hien_thi"])) $hienthi=1;
-		if ($_POST["cha"]==0){
-			$cap=1;
-		}
-		else{
-			$cap=$conn->query("SELECT cap FROM phan_loai WHERE id= '".$conn->real_escape_string($_POST["cha"])."'")->fetch_array()["cap"]+1;
-		}
-		$bv->insert_cat($_GET["editcat"],$_POST["ten"],$hienthi,$cap,$_POST["cha"]);
-	}
+/*
+Phần liệt kê các bài viết trong phân loại
+*/
+else if (isset($_GET["cat"])){
 	?>
+	<h1>Danh sách bài viết trong phân loại</h1>
 	<table class="std_table">
 		<tr>
 			<th>ID</th>
 			<th>Tên</th>
-			<th>Hiển thị</th>
+			<th>Tác giả</th>
 		</tr>
 		<?php
-		captcha(0);
+		$kq=$bv->get_list_baiviet($_GET["cat"]);
+		foreach ($kq as $kq_item){
+			?>
+			<tr>
+				<td><?=$kq_item["id"]?></td>
+				<td><a href="?xmakereq=noidung&subreq=baiviet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
+				<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
+			</tr>
+			<?php
+		}
 		?>
 		<tr>
-			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=baiviet&editcat=0">Mới</a></td>
+			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=baiviet&baiviet=0">Mới</a></td>
 		</tr>
 	</table>
 	<?php
-	/*
-	Phần chỉnh sửa phân loại
-	*/
-	if (isset($_GET["editcat"])){
-		if ($_GET["editcat"]==0){
-			$prefill_result_cat=array(
-				"ten" => "",
-				"hien_thi" => 1
-			);
-		}
-		else{
-			$prefill_result_cat=$conn->query("SELECT * FROM phan_loai WHERE id='".$conn->real_escape_string($_GET["editcat"])."'")->fetch_array();
-		}
-		?>
-		<br>
-		<form method="post">
-			<table class="std_table">
-				<tr>
-					<th>Tên</th>
-					<th>Giá trị</th>
-				</tr>
-				<tr>
-					<td>Tên</td>
-					<td><textarea name="ten"><?=$prefill_result_cat["ten"]?></textarea></td>
-				</tr>
-				<tr>
-					<td>Hiển thị</td>
-					<td><input type="checkbox" name="hien_thi" <?=$prefill_result_cat["hien_thi"]?"checked":""?>></td>
-				</tr>
-				<tr>
-					<td>Phân loại cha</td>
-					<td>
-						<select name="cha">
-							<option value="0">(Không có)</option>
-							<?php
-							$kq_all=$conn->query("SELECT * FROM phan_loai WHERE id<>'".$_GET["editcat"]."'");
-							foreach($kq_all as $kq_item){
-								?>
-								<option value="<?=$kq_item["id"]?>" <?=$prefill_result_cat["cha"]==$kq_item["id"]?"selected":""?>><?=$kq_item["ten"]?></option>
-								<?php
-							}
-							?>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3" style="background-color: #ddffdd;"><input type="submit" name="submit_cat" value="OK"></td>
-				</tr>
-			</table>
-		</form>
-		<?php
-	}
-	/*
-	Phần liệt kê các bài viết trong phân loại
-	*/
-	if (isset($_GET["cat"])){
-		?>
-		<br>
-		<table class="std_table">
-			<tr>
-				<th>ID</th>
-				<th>Tên</th>
-				<th>Tác giả</th>
-			</tr>
-			<?php
-			$kq=$bv->get_list_baiviet($_GET["cat"]);
-			foreach ($kq as $kq_item){
-				?>
-				<tr>
-					<td><?=$kq_item["id"]?></td>
-					<td><a href="?xmakereq=baiviet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
-					<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
-				</tr>
-				<?php
-			}
-			?>
-			<tr>
-				<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=baiviet&baiviet=0">Mới</a></td>
-			</tr>
-		</table>
-		<?php
-	}
 }
 ?>

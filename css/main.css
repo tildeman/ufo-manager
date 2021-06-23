@@ -29,6 +29,9 @@
 	line-height: 60px;
 	padding-left: 20px;
 }
+h1{
+	margin: 10px 0;
+}
 /* Login page */
 .login-box{
 	position:absolute;
@@ -100,7 +103,7 @@
 	width:100%;
 	border: #000000 1px solid;
 	border-spacing: 0;
-	text-align: center;
+	/*text-align: center;*/
 }
 .std_table th{
 	background-color: #ddffdd;
