@@ -59,7 +59,7 @@ if (isset($_GET["editcat"])){
 			</tr>
 			<tr>
 				<td>Tên</td>
-				<td><textarea name="ten"><?=$prefill_result_cat["ten"]?></textarea></td>
+				<td><input class="std_tbl_input" id="name" name="ten" value="<?=$prefill_result_cat["ten"]?>"></td>
 			</tr>
 			<tr>
 				<td>Hiển thị</td>
@@ -96,6 +96,10 @@ if (isset($_GET["editcat"])){
 			<tr>
 				<td colspan="3" style="background-color: #ddffdd;"><input type="submit" name="submit_cat" value="OK"></td>
 			</tr>
+			<script src="js/main.js"></script>
+			<script>
+				document.getElementById("name").addEventListener("keyup",modifyuri);
+			</script>
 		</table>
 	</form>
 	<?php

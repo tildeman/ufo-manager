@@ -67,12 +67,12 @@ if (isset($_GET["baiviet"])){
 				<th>Giá trị</th>
 			</tr>
 			<tr>
-				<td>Tên trên URL</td>
-				<td><textarea name="uri" <?=$edit_mode?"":"readonly"?>><?=$prefill_result["uri"]?></textarea></td>
+				<td>Tên</td>
+				<td><input type="text" class="std_tbl_input" id="name" name="name" <?=$edit_mode?"":"readonly"?> value="<?=$prefill_result["tieu_de"]?>"></td>
 			</tr>
 			<tr>
-				<td>Tên</td>
-				<td><textarea name="name" <?=$edit_mode?"":"readonly"?>><?=$prefill_result["tieu_de"]?></textarea></td>
+				<td>Tên trên URL</td>
+				<td><input type="text" class="std_tbl_input" id="uri" name="uri" <?=$edit_mode?"":"readonly"?> value="<?=$prefill_result["uri"]?>"></td>
 			</tr>
 			<tr>
 				<td>Nội dung</td>
@@ -83,7 +83,7 @@ if (isset($_GET["baiviet"])){
 				<td>
 					<?php
 						$arr_pl=array_flip(explode(" ",$prefill_result["phan_loai"]));
-						$list_pl=$conn->query("SELECT * FROM phan_loai");
+						$list_pl=$conn->query("SELECT * FROM phan_loai WHERE loai='bai_viet'");
 						foreach ($list_pl as $pl_item){
 							?>
 							<input type="checkbox" name="category[]" value="<?=$pl_item["id"]?>" <?=isset($arr_pl[$pl_item["id"]])?"checked":""?> <?=$edit_mode?"":"disabled"?>><?=$pl_item["ten"]?><br>
@@ -103,10 +103,11 @@ if (isset($_GET["baiviet"])){
 		</table>
 		<input class="form_submit" type="submit" name="submit" value="OK" <?=$edit_mode?"":"disabled"?>>
 	</form>
+	<script src="js/main.js"></script>
 	<script src="ckeditor/build/ckeditor.js"></script>
 	<script>
-	ClassicEditor
-		.create( document.querySelector( '.editor' ), {	
+	ClassicEditor.create(
+		document.querySelector( '.editor' ), {	
 			toolbar: {
 				items: [
 					'heading',
@@ -145,13 +146,20 @@ if (isset($_GET["baiviet"])){
 				],
 			},
 			language: 'vi',
-		} )
-		.then( editor => {
+		}
+	)
+	.then(
+		editor => {
 			editor.isReadOnly=<?=$edit_mode?"false":"true"?>;
-		} )
-		.catch( error => {
+		}
+	)
+	.catch(
+		error => {
 			console.error( error );
-		} );
+		}
+	);
+
+	document.getElementById("name").addEventListener("keyup",modifyuri);
 	</script>
 	<?php
 }

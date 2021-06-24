@@ -5,9 +5,9 @@
 .main-bg{
 	position:absolute;
 	top:0;
-	bottom:0;
 	left:0;
 	right:0;
+	min-height: 100%;
 	box-sizing: border-box;
 	background-image: linear-gradient(to bottom right,#44dddd,#229999);
 	background-size: cover;
@@ -145,4 +145,9 @@ h1{
 	color: #666;
 	font-size: 8pt;
 	float:left;
+}
+.std_tbl_input{
+	width: calc(100% - 16px);
+	padding: 10px 5px;
+	font-size: 1rem;
 }
