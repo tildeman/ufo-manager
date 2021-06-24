@@ -39,6 +39,7 @@ class Phanloai{
 			<tr>
 				<td style=';background-color: #ffff<?=$hex?>;'><?=$dsci["id"]?></td>
 				<td style='padding-left: <?=10+(($dsci["cap"]-1)*50)?>px;background-color: #ffff<?=$hex?>;'><a href="?xmakereq=noidung&subreq=<?=$dsci["loai"]?>&cat=<?=$dsci["id"]?>"><?=$dsci["ten"]?></a> (<a href="?xmakereq=noidung&editcat=<?=$dsci["id"]?>">Sửa</a>)</td>
+				<td style=';background-color: #ffff<?=$hex?>;'><?=$dsci["loai"]?></td>
 				<td style=';background-color: #ffff<?=$hex?>;'><?=$dsci["hien_thi"]?"Có":"Không"?></td>
 			</tr>
 			<?php

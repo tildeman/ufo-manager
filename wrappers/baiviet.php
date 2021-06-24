@@ -173,14 +173,14 @@ else if (isset($_GET["cat"])){
 			?>
 			<tr>
 				<td><?=$kq_item["id"]?></td>
-				<td><a href="?xmakereq=noidung&subreq=baiviet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
+				<td><a href="?xmakereq=noidung&subreq=bai_viet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
 				<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
 			</tr>
 			<?php
 		}
 		?>
 		<tr>
-			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=baiviet&baiviet=0">Mới</a></td>
+			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=bai_viet&baiviet=0">Mới</a></td>
 		</tr>
 	</table>
 	<?php

@@ -22,13 +22,14 @@ if (isset($_POST["submit_cat"])){
 	<tr>
 		<th>ID</th>
 		<th>Tên</th>
+		<th>Loại</th>
 		<th>Hiển thị</th>
 	</tr>
 	<?php
 	$pl->captcha(0);
 	?>
 	<tr>
-		<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&editcat=0">Mới</a></td>
+		<td colspan="4" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&editcat=0">Mới</a></td>
 	</tr>
 </table>
 <?php
