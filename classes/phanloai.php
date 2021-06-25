@@ -46,13 +46,13 @@ class Phanloai{
 			$this->captcha($dsci["id"]);
 		}
 	}
-	function insert_cat($id, $ten, $hien_thi, $loai, $cap, $cha){
+	function insert_cat($id, $uri, $ten, $hien_thi, $loai, $cap, $cha){
 		global $conn;
 		if ($id){
-			$conn->query("UPDATE phan_loai SET ten='".$conn->real_escape_string($ten)."', hien_thi='".$conn->real_escape_string($hien_thi)."', loai='".$conn->real_escape_string($loai)."', cap='".$conn->real_escape_string($cap)."', cha='".$conn->real_escape_string($cha)."' WHERE id='".$conn->real_escape_string($id)."'");
+			$conn->query("UPDATE phan_loai SET ten='".$conn->real_escape_string($ten)."', uri='".$conn->real_escape_string($uri)."', hien_thi='".$conn->real_escape_string($hien_thi)."', loai='".$conn->real_escape_string($loai)."', cap='".$conn->real_escape_string($cap)."', cha='".$conn->real_escape_string($cha)."' WHERE id='".$conn->real_escape_string($id)."'");
 		}
 		else{
-			$conn->query("INSERT into phan_loai (id, ten, hien_thi, loai, cap, cha) VALUES (NULL,'".$conn->real_escape_string($ten)."','".$conn->real_escape_string($hien_thi)."','".$conn->real_escape_string($loai)."','".$conn->real_escape_string($cap)."','".$conn->real_escape_string($cha)."')");
+			$conn->query("INSERT into phan_loai (id, uri, ten, hien_thi, loai, cap, cha) VALUES (NULL,'".$conn->real_escape_string($uri)."','".$conn->real_escape_string($ten)."','".$conn->real_escape_string($hien_thi)."','".$conn->real_escape_string($loai)."','".$conn->real_escape_string($cap)."','".$conn->real_escape_string($cha)."')");
 			header("Location: ?xmakereq=noidung&editcat=".urlencode($conn->query("SELECT id FROM phan_loai WHERE ten='".$conn->real_escape_string($ten)."'")->fetch_array()["id"]));
 		}
 	}

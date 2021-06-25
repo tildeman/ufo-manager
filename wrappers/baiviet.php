@@ -44,7 +44,7 @@ if (isset($_GET["baiviet"])){
 		if (!isset($user_priv) && !isset($group_priv) && $prefill_result["quyen"]%2) $edit_mode=1;
 	}
 
-	if (isset($_POST["submit"])){
+	if (isset($_POST["submit_baiviet"])){
 		$quyen=0;
 		if ($edit_mode==2){
 			if (isset($_POST["user"])) $quyen+=4;
@@ -101,7 +101,7 @@ if (isset($_GET["baiviet"])){
 				</td>
 			</tr>
 		</table>
-		<input class="form_submit" type="submit" name="submit" value="OK" <?=$edit_mode?"":"disabled"?>>
+		<input class="form_submit" type="submit" name="submit_baiviet" value="OK" <?=$edit_mode?"":"disabled"?>>
 	</form>
 	<script src="js/main.js"></script>
 	<script src="ckeditor/build/ckeditor.js"></script>
@@ -135,7 +135,7 @@ if (isset($_GET["baiviet"])){
 					'subscript',
 					'specialCharacters',
 					'|',
-					'imageUpload',
+					'imageInsert',
 					'blockQuote',
 					'insertTable',
 					'mediaEmbed',

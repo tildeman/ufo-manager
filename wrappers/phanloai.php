@@ -13,7 +13,7 @@ if (isset($_POST["submit_cat"])){
 	}
 	if ($cap==1) $loai=$_POST["loai"];
 	else $loai=$conn->query("SELECT loai FROM phan_loai WHERE id='".$conn->real_escape_string($_POST["cha"])."'")->fetch_array()["loai"];
-	$pl->insert_cat($_GET["editcat"],$_POST["ten"],$hienthi,$loai,$cap,$_POST["cha"]);
+	$pl->insert_cat($_GET["editcat"],$_POST["uri"],$_POST["ten"],$hienthi,$loai,$cap,$_POST["cha"]);
 	$pl->update_cap_and_loai($_GET["editcat"],$cap,$loai);
 }
 ?>
@@ -60,6 +60,10 @@ if (isset($_GET["editcat"])){
 			<tr>
 				<td>Tên</td>
 				<td><input class="std_tbl_input" id="name" name="ten" value="<?=$prefill_result_cat["ten"]?>"></td>
+			</tr>
+			<tr>
+				<td>Tên trên URL</td>
+				<td><input class="std_tbl_input" id="uri" name="uri" value="<?=$prefill_result_cat["uri"]?>"></td>
 			</tr>
 			<tr>
 				<td>Hiển thị</td>

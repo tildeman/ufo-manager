@@ -1,7 +1,10 @@
+/* Global attributes */
 *{
 	font-family:sans-serif;
 }
-/* Global attributes */
+h1{
+	margin: 10px 0;
+}
 .main-bg{
 	position:absolute;
 	top:0;
@@ -13,6 +16,23 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 }
+#body{
+	width: calc(98% - 20px);
+	margin: 0 1%;
+	padding: 10px;
+	background-color: #ffffff;
+	border-radius: 0 0 5px 5px;
+	min-height: 100px;
+	float:left;
+}
+.copyright{
+	width: 98%;
+	margin: 5px 1%;
+	color: #666;
+	font-size: 8pt;
+	float:left;
+}
+/* Notifications */
 .notification{
 	box-sizing: border-box;
 	border: #505050 1px solid;
@@ -28,9 +48,6 @@
 .notification span{
 	line-height: 60px;
 	padding-left: 20px;
-}
-h1{
-	margin: 10px 0;
 }
 /* Login page */
 .login-box{
@@ -61,6 +78,7 @@ h1{
 .login-box span{
 	margin: 0;
 }
+/* Buttons */
 .btn{
 	width:75px;
 	height:25px;
@@ -90,15 +108,7 @@ h1{
 	text-align: center;
 	font-size: 14pt;
 }
-#body{
-	width: calc(98% - 20px);
-	margin: 0 1%;
-	padding: 10px;
-	background-color: #ffffff;
-	border-radius: 0 0 5px 5px;
-	min-height: 100px;
-	float:left;
-}
+/* Tables */
 .std_table{
 	width:100%;
 	border: #000000 1px solid;
@@ -121,14 +131,17 @@ h1{
 	resize:vertical;
 	width:100%;
 }
-.editor{
-	max-width: 1200px;
+.std_tbl_input{
+	width: calc(100% - 16px);
+	padding: 10px 5px;
+	font-size: 1rem;
 }
 .form_submit{
 	width:100%;
 	font-size:14pt;
 	margin-top:5px;
 }
+/* Miscellaneous */
 .gditem{
 	width: 120px;
 	padding: 10px;
@@ -138,16 +151,4 @@ h1{
 	border: #000000 1px solid;
 	border-radius: 10px;
 	float:left;
-}
-.copyright{
-	width: 98%;
-	margin: 5px 1%;
-	color: #666;
-	font-size: 8pt;
-	float:left;
-}
-.std_tbl_input{
-	width: calc(100% - 16px);
-	padding: 10px 5px;
-	font-size: 1rem;
 }
