@@ -1,0 +1,55 @@
+*{
+	font-family: sans-serif;
+}
+.bg-container{
+	position: absolute;
+	background-color: #eee;
+	top:0;
+	left:0;
+	right:0;
+	min-height: 100%;
+	box-sizing: border-box;
+}
+.new{
+	float: left;
+	height: calc(100% - 10px);
+	margin: 5px;
+	background-color: #22dddd;
+	border: #000 1px solid;
+	border-radius: 5px;
+}
+.toolbar{
+	width:100%;
+	background-color: #ffffff;
+	height:50px;
+	float:left;
+	border: #888 solid;
+	border-width: 0 0 1px 0;
+}
+.fd-item{
+	width: 220px;
+	margin: 5px;
+	float: left;
+	background-color: #ddd;
+	border: #888 1px solid;
+	border-radius: 5px;
+	text-align: center;
+}
+.fd-item img{
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+}
+.fd-item span{
+	font-size: 16pt;
+	font-weight: 600;
+}
+#empty_folder{
+	width:30%;
+	margin: 10px 35%;
+	float:left;
+	text-align:center;
+	padding:10px;
+	border: #000 1px solid;
+	font-size: 20pt;
+}
