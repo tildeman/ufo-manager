@@ -14,9 +14,14 @@
 	float: left;
 	height: calc(100% - 10px);
 	margin: 5px;
-	background-color: #22dddd;
+	background-color: #44dddd;
 	border: #000 1px solid;
 	border-radius: 5px;
+	line-height: 275%;
+}
+.new img{
+	height: 100%;
+	float:left;
 }
 .toolbar{
 	width:100%;
@@ -33,9 +38,10 @@
 	background-color: #ddd;
 	border: #888 1px solid;
 	border-radius: 5px;
+	box-sizing: border-box;
 	text-align: center;
 }
-.fd-item img{
+.type-img{
 	width: 200px;
 	height: 200px;
 	margin: 10px;
@@ -52,4 +58,49 @@
 	padding:10px;
 	border: #000 1px solid;
 	font-size: 20pt;
+}
+.separator{
+	border: #888 1px solid;
+	border-width: 0 1px 0 0;
+	height:100%;
+	float:left;
+}
+#tree{
+	float:left;
+	line-height: 50px;
+}
+.overlay{
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	min-height:100%;
+	background-color: #000a;
+}
+.form_center{
+	position:absolute;
+	border: black 1px solid;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	background-color:white;
+	border-radius:10px;
+	width:500px;
+	padding:5px;
+}
+.form_center img{
+	position:absolute;
+	top:5px;
+	right:5px;
+	width: 40px;
+}
+.ok_btn{
+	width:100%;
+}
+.action{
+	width:15px;
+	height:15px;
+	margin:5px 5px 0 0;
+	float:right;
 }
