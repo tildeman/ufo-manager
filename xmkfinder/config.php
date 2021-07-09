@@ -1,7 +1,6 @@
 <?php
 	$fdcfg["upload"]=dirname(dirname(__FILE__))."/upload";
 	$req_uri=$_SERVER["REQUEST_URI"];
-	//$fdcfg["thing"]=preg_match("/^.*\\/index\\.php$/",$req_uri);
 	if (preg_match("/^.*\\/+index\\.php\\/*\\?.*$/",$req_uri)){
 		$req_uri=preg_replace("/^(.*)\\/+index\\.php\\/*\\?.*$/","$1",$req_uri);
 	}

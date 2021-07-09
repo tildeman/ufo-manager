@@ -34,28 +34,12 @@ if (isset($_GET["baiviet"])){
 	$edit_mode=0;
 	$user=$conn->query("SELECT * FROM ten_nguoi_dung WHERE ten='".$conn->real_escape_string($_SESSION["username"])."'")->fetch_array();
 	$uid=$user["id"];
-	if ($uid==$prefill_result["tac_gia"]) $user_priv="yes";
-	if (in_array($prefill_result["groupid"],explode(" ",$user["in_group"]))) $group_priv="yes";
 	// Kiểm tra chế độ chỉnh sửa bài viết
-	if (in_array("1",explode(" ",$user["in_group"]))) $edit_mode=2;
-	else{
-		if (isset($user_priv) && floor($prefill_result["quyen"]/4)%2) $edit_mode=2;
-		if (isset($group_priv) && floor($prefill_result["quyen"]/2)%2 && !floor($prefill_result["quyen"]/4)%2) $edit_mode=1;
-		if (!isset($user_priv) && !isset($group_priv) && $prefill_result["quyen"]%2) $edit_mode=1;
-	}
+	if (in_array("1",explode(" ",$user["in_group"]))) $edit_mode=1;
 
 	if (isset($_POST["submit_baiviet"])){
-		$quyen=0;
-		if ($edit_mode==2){
-			if (isset($_POST["user"])) $quyen+=4;
-			if (isset($_POST["group"])) $quyen+=2;
-			if (isset($_POST["other"])) $quyen+=1;
-		}
-		else{
-			$quyen=$prefill_result["quyen"];
-		}
 		$category=implode(" ",$_POST["category"]);
-		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],0,$category,$quyen);
+		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],0,$category);
 		$prefill_result=$conn->query("SELECT * from bai_viet where id=".$conn->real_escape_string($_GET["baiviet"]))->fetch_array();
 	}
 	?>
@@ -68,11 +52,11 @@ if (isset($_GET["baiviet"])){
 			</tr>
 			<tr>
 				<td>Tên</td>
-				<td><input type="text" class="std_tbl_input" id="name" name="name" <?=$edit_mode?"":"readonly"?> value="<?=$prefill_result["tieu_de"]?>"></td>
+				<td><input type="text" class="std_tbl_input" id="name" name="name" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["tieu_de"])?>"></td>
 			</tr>
 			<tr>
 				<td>Tên trên URL</td>
-				<td><input type="text" class="std_tbl_input" id="uri" name="uri" <?=$edit_mode?"":"readonly"?> value="<?=$prefill_result["uri"]?>"></td>
+				<td><input type="text" class="std_tbl_input" id="uri" name="uri" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["uri"])?>"></td>
 			</tr>
 			<tr>
 				<td>Nội dung</td>
@@ -90,14 +74,6 @@ if (isset($_GET["baiviet"])){
 							<?php
 						}
 					?>
-				</td>
-			</tr>
-			<tr>
-				<td>Quyền chỉnh sửa</td>
-				<td>
-					<input type="checkbox" name="user" value="y" <?=$edit_mode==2?"":"disabled"?> <?=floor($prefill_result["quyen"]/4)%2?"checked":""?>>Tôi
-					<input type="checkbox" name="group" value="y" <?=$edit_mode==2?"":"disabled"?> <?=floor($prefill_result["quyen"]/2)%2?"checked":""?>>Nhóm của tôi
-					<input type="checkbox" name="other" value="y" <?=$edit_mode==2?"":"disabled"?> <?=$prefill_result["quyen"]%2?"checked":""?>>Những người còn lại trên XMake
 				</td>
 			</tr>
 		</table>
@@ -146,6 +122,9 @@ if (isset($_GET["baiviet"])){
 				],
 			},
 			language: 'vi',
+			simpleUpload: {
+				uploadUrl: "raw_upload.php"
+			}
 		}
 	)
 	.then(

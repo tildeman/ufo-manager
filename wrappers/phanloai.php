@@ -59,11 +59,11 @@ if (isset($_GET["editcat"])){
 			</tr>
 			<tr>
 				<td>Tên</td>
-				<td><input class="std_tbl_input" id="name" name="ten" value="<?=$prefill_result_cat["ten"]?>"></td>
+				<td><input class="std_tbl_input" id="name" name="ten" value="<?=htmlspecialchars($prefill_result_cat["ten"])?>"></td>
 			</tr>
 			<tr>
 				<td>Tên trên URL</td>
-				<td><input class="std_tbl_input" id="uri" name="uri" value="<?=$prefill_result_cat["uri"]?>"></td>
+				<td><input class="std_tbl_input" id="uri" name="uri" value="<?=htmlspecialchars($prefill_result_cat["uri"])?>"></td>
 			</tr>
 			<tr>
 				<td>Hiển thị</td>

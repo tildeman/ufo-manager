@@ -6,4 +6,10 @@ $config["db_pass"]="hinhthanglol";
 $config["db_server"]=$_SERVER["HTTP_HOST"];
 //Khu vực cài XMake
 $config["docroot"]=dirname(__FILE__);
+$req_uri=$_SERVER["REQUEST_URI"];
+if (preg_match("/^(\\/.+)\\/.*\\..*(\\?.*)?$/",$req_uri)){
+	$req_uri=preg_replace("/^(\\/.+)\\/.*\\..*(\\?.*)?$/","$1",$req_uri);
+}
+$config["httproot"]="http".(isset($_SERVER["HTTPS"])?"s":"")."://".$_SERVER["HTTP_HOST"].$req_uri;
+$config["upload_path"]="upload/";
 ?>
