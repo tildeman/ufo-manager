@@ -7,11 +7,11 @@ function append_tmpnumber($filename,$dig){
 }
 if (isset($_SESSION["username"])&&isset($_SESSION["password"])){
 	if (!isset($_FILES["upload"])){
-		echo "{\"error\":{\"message\": \"Tham số không hợp lệ.\"}}";	
+		echo json_encode(array("error"=>array("message"=>"Tham số không hợp lệ.")));
 	}
 	else{
 		if ($_FILES["upload"]["error"]){
-			echo "{\"error\":{\"message\": \"Lỗi tải ảnh lên (".$_FILES["upload"]["error"].")\"}}";
+			echo json_encode(array("error"=>array("message"=>"Lỗi tải ảnh lên (".$_FILES["upload"]["error"].")")));
 		}
 		else{
 			if (file_exists($config["upload_path"].$_FILES["upload"]["name"])){
@@ -20,16 +20,16 @@ if (isset($_SESSION["username"])&&isset($_SESSION["password"])){
 					$i++;
 				}
 				file_put_contents($config["upload_path"].append_tmpnumber($_FILES["upload"]["name"],$i),file_get_contents($_FILES["upload"]["tmp_name"]));
-				echo "{\"url\": \"".str_replace("\"","\\\"",$config["httproot"]."/".$config["upload_path"].append_tmpnumber($_FILES["upload"]["name"],$i))."\"}";
+				echo json_encode(array("url"=>$config["httproot"]."/".$config["upload_path"].append_tmpnumber($_FILES["upload"]["name"],$i)));
 			}
 			else{
 				file_put_contents($config["upload_path"].$_FILES["upload"]["name"],file_get_contents($_FILES["upload"]["tmp_name"]));
-				echo "{\"url\": \"".str_replace("\"","\\\"",$config["httproot"]."/".$config["upload_path"].$_FILES["upload"]["name"])."\"}";
+				echo json_encode(array("url"=>$config["httproot"]."/".$config["upload_path"].$_FILES["upload"]["name"]));
 			}
 		}
 	}
 }
 else{
-	echo "{\"error\":{\"message\": \"Hình như bạn bị đăng xuất tự động. Hãy thử đăng nhập lại.\"}}";
+	echo json_encode(array("error"=>array("message"=>"Hình như bạn bị đăng xuất tự động. Hãy thử đăng nhập lại.")));
 }
 ?>
