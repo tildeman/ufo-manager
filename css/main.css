@@ -148,7 +148,9 @@ h1{
 	margin: 10px;
 	background-color: #ccffff;
 	text-align: center;
+	cursor: pointer;
 	border: #000000 1px solid;
 	border-radius: 10px;
 	float:left;
+	color: #000000;
 }
