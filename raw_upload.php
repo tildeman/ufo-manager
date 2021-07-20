@@ -14,17 +14,17 @@ if (isset($_SESSION["username"])&&isset($_SESSION["password"])){
 			echo json_encode(array("error"=>array("message"=>"Lỗi tải ảnh lên (".$_FILES["upload"]["error"].")")));
 		}
 		else{
-			if (file_exists($config["upload_path"].$_FILES["upload"]["name"])){
+			if (file_exists($config["upload_path"]."raw/".$_FILES["upload"]["name"])){
 				$i=0;
-				while (file_exists($config["upload_path"].append_tmpnumber($_FILES["upload"]["name"],$i))){
+				while (file_exists($config["upload_path"]."raw/".append_tmpnumber($_FILES["upload"]["name"],$i))){
 					$i++;
 				}
-				file_put_contents($config["upload_path"].append_tmpnumber($_FILES["upload"]["name"],$i),file_get_contents($_FILES["upload"]["tmp_name"]));
-				echo json_encode(array("url"=>$config["httproot"]."/".$config["upload_path"].append_tmpnumber($_FILES["upload"]["name"],$i)));
+				file_put_contents($config["upload_path"]."raw/".append_tmpnumber($_FILES["upload"]["name"],$i),file_get_contents($_FILES["upload"]["tmp_name"]));
+				echo json_encode(array("url"=>$config["httproot"]."/".$config["upload_path"]."raw/".append_tmpnumber($_FILES["upload"]["name"],$i)));
 			}
 			else{
-				file_put_contents($config["upload_path"].$_FILES["upload"]["name"],file_get_contents($_FILES["upload"]["tmp_name"]));
-				echo json_encode(array("url"=>$config["httproot"]."/".$config["upload_path"].$_FILES["upload"]["name"]));
+				file_put_contents($config["upload_path"]."raw/".$_FILES["upload"]["name"],file_get_contents($_FILES["upload"]["tmp_name"]));
+				echo json_encode(array("url"=>$config["httproot"]."/".$config["upload_path"]."raw/".$_FILES["upload"]["name"]));
 			}
 		}
 	}

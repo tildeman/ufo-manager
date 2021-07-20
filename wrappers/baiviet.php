@@ -39,7 +39,7 @@ if (isset($_GET["baiviet"])){
 
 	if (isset($_POST["submit_baiviet"])){
 		$category=implode(" ",$_POST["category"]);
-		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],0,$category);
+		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],$category);
 		$prefill_result=$conn->query("SELECT * from bai_viet where id=".$conn->real_escape_string($_GET["baiviet"]))->fetch_array();
 	}
 	?>
