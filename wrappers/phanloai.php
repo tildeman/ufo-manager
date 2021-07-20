@@ -116,6 +116,9 @@ if (isset($_GET["subreq"])){
 		case "bai_viet":
 			include "baiviet.php";
 			break;
+		case "album_anh":
+			include "albumanh.php";
+			break;
 		default:
 			echo "<br>¯\\_(ツ)_/¯";
 	}
