@@ -32,11 +32,11 @@ if (isset($_POST["username"])&&isset($_POST["password"])){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/main.css">
-	<title>XMake</title>
+	<title>UFO Manager</title>
 </head>
 <body>
 	<script>
-		console.log("Powered by XMake :)");
+		console.log("Powered by UFO Manager :)");
 		function goto(l){
 			location="?xmakereq="+l;
 		}
@@ -52,7 +52,7 @@ if (isset($_POST["username"])&&isset($_POST["password"])){
 			?>
 			<div id="menubar">
 				<a href=".">
-					<img src="images/xmake-logo.png" id="home-btn">
+					<img src="images/ufomgr-logo.png" id="home-btn">
 				</a>
 				<button class="menu-btn" onclick="goto('noidung')">
 					Nội dung
@@ -96,7 +96,7 @@ if (isset($_POST["username"])&&isset($_POST["password"])){
 			?>
 			<div class="login-box">
 				<form method="post">
-					<h1>Đăng nhập vào XMake</h1>
+					<h1>Đăng nhập vào UFO Manager</h1>
 					<span>Tên người dùng:</span><br>
 					<input type="text" name="username" class="login-expand">
 					<span>Mật khẩu:</span><br>

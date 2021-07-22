@@ -12,7 +12,7 @@ h1{
 	right:0;
 	min-height: 100%;
 	box-sizing: border-box;
-	background-image: linear-gradient(to bottom right,#44dddd,#229999);
+	background-image: linear-gradient(to bottom right,#ddb444,#996f22);
 	background-size: cover;
 	background-repeat: no-repeat;
 }

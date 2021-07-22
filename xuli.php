@@ -8,7 +8,7 @@ if (isset($_GET["xmakereq"])){
 			include "wrappers/giaodien.php";
 			break;
 		case "tienich":
-			echo "Tiện ích";
+			include "wrappers/tienich.php";
 			break;
 		case "logout":
 			session_start();
