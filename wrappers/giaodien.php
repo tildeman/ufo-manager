@@ -2,7 +2,10 @@
 if (isset($_GET["muc"])){
 	switch($_GET["muc"]){
 		case "thanhngang":
-			echo "thanhngang";
+			include "thanhngang.php";
+			break;
+		case "noidungtinh":
+			include "noidungtinh.php";
 			break;
 		default:
 			echo "aaa";
