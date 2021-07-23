@@ -43,6 +43,11 @@ if (isset($_GET["xmakereq"])){
 				<?php
 			}
 			break;
+		default:
+			echo ":Đ";
 	}
+}
+else{
+	echo $conn->query("SELECT noi_dung FROM noi_dung_tinh WHERE uri='trang_chu'")->fetch_array()["noi_dung"];
 }
 ?>

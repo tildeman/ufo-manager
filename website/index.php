@@ -46,14 +46,14 @@ function captcha($cha){
 	<div class="main-bg">
 		<div id="menubar">
 			<a href=".">
-				<img src="data:image/png;base64,<?=$settings["anh-base64"]?>" id="home-btn">
+				<img src="data:image;base64,<?=$settings["anh-base64"]?>" id="home-btn">
 			</a>
 			<?php
 			foreach ($thanhngang as $ctn){
 				?>
-				<a href="<?=urlencode($ctn["link"])?>">
+				<a href="<?=$ctn["link"]?>">
 					<div class="menu-btn">
-						<?=htmlspecialchars("ten")?>
+						<?=htmlspecialchars($ctn["ten"])?>
 					</div>
 				</a>
 				<?php
