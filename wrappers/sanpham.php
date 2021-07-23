@@ -54,8 +54,7 @@ if (isset($_GET["sanpham"])){
 		$prefill_result=array(
 			"tieu_de" => "",
 			"noi_dung" => "",
-			"phan_loai" => "",
-			"quyen" => "4"
+			"phan_loai" => ""
 		);
 	}
 
