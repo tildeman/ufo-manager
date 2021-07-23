@@ -7,6 +7,9 @@ if (isset($_GET["muc"])){
 		case "noidungtinh":
 			include "noidungtinh.php";
 			break;
+		case "thietke":
+			include "thietke.php";
+			break;
 		default:
 			echo "aaa";
 	}
@@ -20,7 +23,12 @@ else{
 	</a>
 	<a href="?xmakereq=giaodien&muc=noidungtinh">
 		<div class="gditem">
-			<img src="images/sec_icn/trangchu.svg">Nội dung tĩnh
+			<img src="images/sec_icn/ttinchung.svg">Nội dung tĩnh
+		</div>
+	</a>
+	<a href="?xmakereq=giaodien&muc=thietke">
+		<div class="gditem">
+			<img src="images/sec_icn/trangchu.svg">Thiết kế
 		</div>
 	</a>
 	<?php

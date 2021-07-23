@@ -12,5 +12,6 @@ if (preg_match("/^(\\/.+)\\/.*\\..*(\\?.*)?$/",$req_uri)){
 	$req_uri=preg_replace("/^(\\/.+)\\/.*\\..*(\\?.*)?$/","$1",$req_uri);
 }
 $config["httproot"]="http".(isset($_SERVER["HTTPS"])?"s":"")."://".$_SERVER["HTTP_HOST"].$req_uri;
+$config["webroot"]=$config["docroot"]."/website";
 $config["upload_path"]="upload/";
 ?>
