@@ -38,9 +38,10 @@ class Phanloai{
 			?>
 			<tr>
 				<td style=';background-color: #ffff<?=$hex?>;'><?=$dsci["id"]?></td>
-				<td style='padding-left: <?=10+(($dsci["cap"]-1)*50)?>px;background-color: #ffff<?=$hex?>;'><a href="?xmakereq=noidung&subreq=<?=$dsci["loai"]?>&cat=<?=$dsci["id"]?>"><?=$dsci["ten"]?></a> (<a href="?xmakereq=noidung&editcat=<?=$dsci["id"]?>">Sửa</a>)</td>
+				<td style='padding-left: <?=10+(($dsci["cap"]-1)*50)?>px;background-color: #ffff<?=$hex?>;'><a href="?xmakereq=noidung&subreq=<?=$dsci["loai"]?>&cat=<?=$dsci["id"]?>"><?=$dsci["ten"]?></a></td>
 				<td style=';background-color: #ffff<?=$hex?>;'><?=$dsci["loai"]?></td>
 				<td style=';background-color: #ffff<?=$hex?>;'><?=$dsci["hien_thi"]?"Có":"Không"?></td>
+				<td><a href="?xmakereq=noidung&editcat=<?=$dsci["id"]?>">Sửa</a> <a href="?xmakereq=noidung&deletecat=<?=$dsci["id"]?>">Xóa</a></td>
 			</tr>
 			<?php
 			$this->captcha($dsci["id"]);
@@ -55,6 +56,17 @@ class Phanloai{
 			$conn->query("INSERT into phan_loai (id, uri, ten, hien_thi, loai, cap, cha) VALUES (NULL,'".$conn->real_escape_string($uri)."','".$conn->real_escape_string($ten)."','".$conn->real_escape_string($hien_thi)."','".$conn->real_escape_string($loai)."','".$conn->real_escape_string($cap)."','".$conn->real_escape_string($cha)."')");
 			header("Location: ?xmakereq=noidung&editcat=".urlencode($conn->query("SELECT id FROM phan_loai WHERE ten='".$conn->real_escape_string($ten)."'")->fetch_array()["id"]));
 		}
+	}
+	function delete_cat($id){
+		global $conn;
+		$data=$conn->query("SELECT * FROM phan_loai WHERE id=".$conn->real_escape_string($id))->fetch_array();
+
+		$list=$this->get_list_cat_by_cha($id);
+		foreach ($list as $list_item){
+			$conn->query("UPDATE phan_loai SET cap='".$conn->real_escape_string($list_item["cap"]-1)."', cha='".$conn->real_escape_string($data["cha"])."' WHERE id='".$conn->real_escape_string($list_item["id"])."'");
+			$this->update_cap_and_loai($list_item["id"],$list_item["cap"]-1,$list_item["loai"]);
+		}
+		$conn->query("DELETE FROM phan_loai WHERE id='".$conn->real_escape_string($id)."'");
 	}
 	function update_cap_and_loai($id,$cap,$loai){
 		/*

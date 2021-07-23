@@ -2,8 +2,44 @@
 include $config["docroot"]."/classes/albumanh.php";
 $bv=new Albumanh();
 /*
+Phần liệt kê các bài viết trong phân loại
+*/
+if (isset($_GET["cat"])){
+	?>
+	<h1>Danh sách album ảnh trong phân loại</h1>
+	<table class="std_table">
+		<tr>
+			<th>Tên</th>
+			<th>Ảnh</th>
+			<th>Mô tả</th>
+			<th></th>
+		</tr>
+		<?php
+		$kq=$bv->get_list_albumanh($_GET["cat"]);
+		foreach ($kq as $kq_item){
+			?>
+			<tr>
+				<td><?=$kq_item["ten"]?></a></td>
+				<td><img src="<?=htmlspecialchars($config["httproot"]."/".$config["upload_path"]."album_anh/".$kq_item["phan_loai"]."-".$kq_item["ten"].".".$kq_item["ftype"])?>"></td>
+				<td><?=$kq_item["mo_ta"]?></td>
+				<td><a href="?xmakereq=noidung&subreq=album_anh&anh=<?=$kq_item["id"]?>">Sửa</a> <a href="?xmakereq=noidung&subreq=album_anh&delalbumanh=<?=$kq_item["id"]?>">Xóa</a></td>
+			</tr>
+			<?php
+		}
+		?>
+		<tr>
+			<td colspan="4" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=album_anh&anh=0">Mới</a></td>
+		</tr>
+	</table>
+	<?php
+}
+/*
 Phần chỉnh sửa bài viết
 */
+if (isset($_GET["delalbumanh"])){
+	$bv->delete_albumanh($_GET["delalbumanh"]);
+	header("Location: ?xmakereq=noidung");
+}
 if (isset($_GET["anh"])){
 	if ($_GET["anh"]){
 		$prefill_result=$conn->query("SELECT * from album_anh where id=".$conn->real_escape_string($_GET["anh"]))->fetch_array();
@@ -72,36 +108,6 @@ if (isset($_GET["anh"])){
 	<script>
 	document.getElementById("name").addEventListener("keyup",modifyuri);
 	</script>
-	<?php
-}
-/*
-Phần liệt kê các bài viết trong phân loại
-*/
-else if (isset($_GET["cat"])){
-	?>
-	<h1>Danh sách album ảnh trong phân loại</h1>
-	<table class="std_table">
-		<tr>
-			<th>ID</th>
-			<th>Tên</th>
-			<th>Ảnh</th>
-		</tr>
-		<?php
-		$kq=$bv->get_list_albumanh($_GET["cat"]);
-		foreach ($kq as $kq_item){
-			?>
-			<tr>
-				<td><?=$kq_item["id"]?></td>
-				<td><a href="?xmakereq=noidung&subreq=album_anh&anh=<?=$kq_item["id"]?>"><?=$kq_item["ten"]?></a></td>
-				<td><img src="<?=htmlspecialchars($config["httproot"]."/".$config["upload_path"]."album_anh/".$kq_item["phan_loai"]."-".$kq_item["ten"].".".$kq_item["ftype"])?>"></td>
-			</tr>
-			<?php
-		}
-		?>
-		<tr>
-			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=album_anh&anh=0">Mới</a></td>
-		</tr>
-	</table>
 	<?php
 }
 ?>

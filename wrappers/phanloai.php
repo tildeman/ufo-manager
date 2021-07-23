@@ -2,6 +2,10 @@
 include $config["docroot"]."/classes/phanloai.php";
 $pl=new Phanloai();
 //Mặc định: hiển thị danh sách tất cả các phân loại bài viết
+if (isset($_GET["deletecat"])){
+	$pl->delete_cat($_GET["deletecat"]);
+	header("Location: ?xmakereq=noidung");
+}
 if (isset($_POST["submit_cat"])){
 	$hienthi=0;
 	if (isset($_POST["hien_thi"])) $hienthi=1;
@@ -25,12 +29,13 @@ if (isset($_POST["submit_cat"])){
 		<th>Tên</th>
 		<th>Loại</th>
 		<th>Hiển thị</th>
+		<th></th>
 	</tr>
 	<?php
 	$pl->captcha(0);
 	?>
 	<tr>
-		<td colspan="4" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&editcat=0">Mới</a></td>
+		<td colspan="5" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&editcat=0">Mới</a></td>
 	</tr>
 </table>
 <?php

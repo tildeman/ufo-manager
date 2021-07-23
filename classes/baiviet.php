@@ -21,9 +21,13 @@ class Baiviet{
 		}
 		else{
 			$userinfo=$conn->query("SELECT * FROM ten_nguoi_dung WHERE ten='".$conn->real_escape_string($_SESSION["username"])."'")->fetch_array();
-			$conn->query("INSERT into bai_viet (id, uri, tieu_de, noi_dung, tac_gia, phan_loai, ftype) values (NULL,'".$conn->real_escape_string($uri)."','".$conn->real_escape_string($td)."','".$conn->real_escape_string($nd)."','".$conn->real_escape_string($userinfo["id"])."','".$conn->real_escape_string($phanloai)."','".$conn->real_escape_string($getext)."')");
+			$conn->query("INSERT INTO bai_viet (id, uri, tieu_de, noi_dung, tac_gia, phan_loai, ftype) values (NULL,'".$conn->real_escape_string($uri)."','".$conn->real_escape_string($td)."','".$conn->real_escape_string($nd)."','".$conn->real_escape_string($userinfo["id"])."','".$conn->real_escape_string($phanloai)."','".$conn->real_escape_string($getext)."')");
 			header("Location: ?xmakereq=noidung&subreq=bai_viet&baiviet=".urlencode($conn->query("SELECT id FROM bai_viet WHERE uri='".$conn->real_escape_string($uri)."'")->fetch_array()["id"]));
 		}
+	}
+	function delete_baiviet($id){
+		global $conn;
+		$conn->query("DELETE FROM bai_viet WHERE id='".$conn->real_escape_string($id)."'");
 	}
 }
 ?>

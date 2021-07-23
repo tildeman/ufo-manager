@@ -15,6 +15,7 @@ if (isset($_GET["cat"])){
 			<th>Giá</th>
 			<th>Hãng</th>
 			<th>Tác giả</th>
+			<th></th>
 		</tr>
 		<?php
 		$kq=$bv->get_list_sanpham($_GET["cat"]);
@@ -22,17 +23,18 @@ if (isset($_GET["cat"])){
 			?>
 			<tr>
 				<td><img src="<?=htmlspecialchars($config["upload_path"]."san_pham/".$kq_item["phan_loai"]."-".$kq_item["uri"].".".$kq_item["ftype"])?>" class="repimg"></td>
-				<td><a href="?xmakereq=noidung&subreq=san_pham&sanpham=<?=$kq_item["id"]?>"><?=$kq_item["ten"]?></a></td>
+				<td><?=$kq_item["ten"]?></td>
 				<td><?=$kq_item["mota"]?></td>
 				<td><?=$kq_item["gia"]?></td>
 				<td><?=$kq_item["hang"]?></td>
 				<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
+				<td><a href="?xmakereq=noidung&subreq=san_pham&sanpham=<?=$kq_item["id"]?>">Sửa</a> <a href="?xmakereq=noidung&subreq=san_pham&delsanpham=<?=$kq_item["id"]?>">Xóa</a></td>
 			</tr>
 			<?php
 		}
 		?>
 		<tr>
-			<td colspan="6" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=san_pham&sanpham=0">Mới</a></td>
+			<td colspan="7" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=san_pham&sanpham=0">Mới</a></td>
 		</tr>
 	</table>
 	<?php
@@ -40,6 +42,10 @@ if (isset($_GET["cat"])){
 /*
 Phần chỉnh sửa bài viết
 */
+if (isset($_GET["delsanpham"])){
+	$bv->delete_sanpham($_GET["delsanpham"]);
+	header("Location: ?xmakereq=noidung");
+}
 if (isset($_GET["sanpham"])){
 	if ($_GET["sanpham"]){
 		$prefill_result=$conn->query("SELECT * from san_pham where id=".$conn->real_escape_string($_GET["sanpham"]))->fetch_array();

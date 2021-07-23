@@ -1,8 +1,8 @@
 <?php
 if (isset($_GET["muc"])){
 	switch($_GET["muc"]){
-		case "thanhdoc":
-			echo "thanhdoc";
+		case "thanhngang":
+			echo "thanhngang";
 			break;
 		default:
 			echo "aaa";
@@ -10,24 +10,14 @@ if (isset($_GET["muc"])){
 }
 else{
 	?>
-	<a href="?xmakereq=giaodien&muc=thanhdoc">
-		<div class="gditem">
-			<img src="images/sec_icn/thanhdoc.svg">Thanh dọc
-		</div>
-	</a>
 	<a href="?xmakereq=giaodien&muc=thanhngang">
 		<div class="gditem" onclick="console.log('thanh ngang')">
 			<img src="images/sec_icn/thanhngang.svg">Thanh ngang
 		</div>
 	</a>
-	<a href="?xmakereq=giaodien&muc=ttinchung">
+	<a href="?xmakereq=giaodien&muc=noidungtinh">
 		<div class="gditem">
-			<img src="images/sec_icn/ttinchung.svg">Thông tin chung
-		</div>
-	</a>
-	<a href="?xmakereq=giaodien&muc=trangchu">
-		<div class="gditem">
-			<img src="images/sec_icn/trangchu.svg">Trang chủ
+			<img src="images/sec_icn/trangchu.svg">Nội dung tĩnh
 		</div>
 	</a>
 	<?php

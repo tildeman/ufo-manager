@@ -25,5 +25,9 @@ class Sanpham{
 			header("Location: ?xmakereq=noidung&subreq=san_pham&sanpham=".urlencode($conn->query("SELECT id FROM san_pham WHERE uri='".$conn->real_escape_string($uri)."'")->fetch_array()["id"]));
 		}
 	}
+	function delete_sanpham($id){
+		global $conn;
+		$conn->query("DELETE FROM san_pham WHERE id='".$conn->real_escape_string($id)."'");
+	}
 }
 ?>

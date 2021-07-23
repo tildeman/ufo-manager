@@ -24,5 +24,9 @@ class Albumanh{
 			header("Location: ?xmakereq=noidung&subreq=album_anh&anh=".urlencode($conn->query("SELECT id FROM album_anh WHERE uri='".$conn->real_escape_string($uri)."'")->fetch_array()["id"]));
 		}
 	}
+	function delete_albumanh($id){
+		global $conn;
+		$conn->query("DELETE FROM album_anh WHERE id='".$conn->real_escape_string($id)."'");
+	}
 }
 ?>

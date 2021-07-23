@@ -1,9 +1,42 @@
 <?php
 include $config["docroot"]."/classes/baiviet.php";
 $bv=new Baiviet();
+if (isset($_GET["cat"])){
+	?>
+	<h1>Danh sách bài viết trong phân loại</h1>
+	<table class="std_table">
+		<tr>
+			<th>Ảnh đại diện</th>
+			<th>Tên</th>
+			<th>Tác giả</th>
+			<th></th>
+		</tr>
+		<?php
+		$kq=$bv->get_list_baiviet($_GET["cat"]);
+		foreach ($kq as $kq_item){
+			?>
+			<tr>
+				<td><img src="<?=htmlspecialchars($config["upload_path"]."bai_viet/".$kq_item["phan_loai"]."-".$kq_item["uri"].".".$kq_item["ftype"])?>" class="repimg"></td>
+				<td><?=$kq_item["tieu_de"]?></td>
+				<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
+				<td><a href="?xmakereq=noidung&subreq=bai_viet&baiviet=<?=$kq_item["id"]?>">Sửa</a> <a href="?xmakereq=noidung&subreq=bai_viet&delbaiviet=<?=$kq_item["id"]?>">Xóa</a></td>
+			</tr>
+			<?php
+		}
+		?>
+		<tr>
+			<td colspan="4" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=bai_viet&baiviet=0">Mới</a></td>
+		</tr>
+	</table>
+	<?php
+}
 /*
 Phần chỉnh sửa bài viết
 */
+if (isset($_GET["delbaiviet"])){
+	$bv->delete_baiviet($_GET["delbaiviet"]);
+	header("Location: ?xmakereq=noidung");
+}
 if (isset($_GET["baiviet"])){
 	if ($_GET["baiviet"]){
 		$prefill_result=$conn->query("SELECT * from bai_viet where id=".$conn->real_escape_string($_GET["baiviet"]))->fetch_array();
@@ -12,8 +45,7 @@ if (isset($_GET["baiviet"])){
 		$prefill_result=array(
 			"tieu_de" => "",
 			"noi_dung" => "",
-			"phan_loai" => "",
-			"quyen" => "4"
+			"phan_loai" => ""
 		);
 	}
 
@@ -135,31 +167,4 @@ if (isset($_GET["baiviet"])){
 /*
 Phần liệt kê các bài viết trong phân loại
 */
-else if (isset($_GET["cat"])){
-	?>
-	<h1>Danh sách bài viết trong phân loại</h1>
-	<table class="std_table">
-		<tr>
-			<th>Ảnh đại diện</th>
-			<th>Tên</th>
-			<th>Tác giả</th>
-		</tr>
-		<?php
-		$kq=$bv->get_list_baiviet($_GET["cat"]);
-		foreach ($kq as $kq_item){
-			?>
-			<tr>
-				<td><img src="<?=htmlspecialchars($config["upload_path"]."bai_viet/".$kq_item["phan_loai"]."-".$kq_item["uri"].".".$kq_item["ftype"])?>" class="repimg"></td>
-				<td><a href="?xmakereq=noidung&subreq=bai_viet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
-				<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
-			</tr>
-			<?php
-		}
-		?>
-		<tr>
-			<td colspan="3" style="background-color: #ddffdd;"><a href="?xmakereq=noidung&subreq=bai_viet&baiviet=0">Mới</a></td>
-		</tr>
-	</table>
-	<?php
-}
 ?>
