@@ -14,10 +14,11 @@ if (isset($_POST["submit_cat"])){
 	if ($cap==1) $loai=$_POST["loai"];
 	else $loai=$conn->query("SELECT loai FROM phan_loai WHERE id='".$conn->real_escape_string($_POST["cha"])."'")->fetch_array()["loai"];
 	$pl->insert_cat($_GET["editcat"],$_POST["uri"],$_POST["ten"],$hienthi,$loai,$cap,$_POST["cha"]);
-	$pl->update_cap_and_loai($_GET["editcat"],$cap,$loai);
+	$id_new=$conn->query("SELECT id FROM phan_loai WHERE uri='".$conn->real_escape_string($_POST["uri"])."'")->fetch_array()["id"];
+	$pl->update_cap_and_loai($id_new,$cap,$loai);
 }
 ?>
-<h1>Quản lí phân loại bài viết</h1>
+<h1>Quản lí phân loại nội dung</h1>
 <table class="std_table">
 	<tr>
 		<th>ID</th>
@@ -39,6 +40,7 @@ Phần chỉnh sửa phân loại
 if (isset($_GET["editcat"])){
 	if ($_GET["editcat"]==0){
 		$prefill_result_cat=array(
+			"uri" => "",
 			"ten" => "",
 			"loai" => "",
 			"hien_thi" => 1,
@@ -118,6 +120,9 @@ if (isset($_GET["subreq"])){
 			break;
 		case "album_anh":
 			include "albumanh.php";
+			break;
+		case "san_pham":
+			include "sanpham.php";
 			break;
 		default:
 			echo "<br>¯\\_(ツ)_/¯";
