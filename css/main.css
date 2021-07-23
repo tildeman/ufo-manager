@@ -154,3 +154,7 @@ h1{
 	float:left;
 	color: #000000;
 }
+.repimg{
+	max-width: 150px;
+	max-height: 150px;
+}

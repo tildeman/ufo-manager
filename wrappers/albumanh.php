@@ -37,11 +37,11 @@ if (isset($_GET["anh"])){
 			</tr>
 			<tr>
 				<td>Tên</td>
-				<td><input type="text" class="std_tbl_input" id="name" name="name" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["ten"])?>"></td>
+				<td><input type="text" required class="std_tbl_input" id="name" name="name" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["ten"])?>"></td>
 			</tr>
 			<tr>
 				<td>Tên trên URL</td>
-				<td><input type="text" class="std_tbl_input" id="uri" name="uri" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["uri"])?>"></td>
+				<td><input type="text" required class="std_tbl_input" id="uri" name="uri" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["uri"])?>"></td>
 			</tr>
 			<tr>
 				<td>Mô tả</td>
@@ -49,7 +49,7 @@ if (isset($_GET["anh"])){
 			</tr>
 			<tr>
 				<td>Ảnh</td>
-				<td><input type="file" name="img_upload"></td>
+				<td><input type="file" name="img_upload" required></td>
 			</tr>
 			<tr>
 				<td>Phân loại</td>
@@ -79,7 +79,7 @@ Phần liệt kê các bài viết trong phân loại
 */
 else if (isset($_GET["cat"])){
 	?>
-	<h1>Danh sách bài viết trong phân loại</h1>
+	<h1>Danh sách album ảnh trong phân loại</h1>
 	<table class="std_table">
 		<tr>
 			<th>ID</th>
@@ -88,7 +88,6 @@ else if (isset($_GET["cat"])){
 		</tr>
 		<?php
 		$kq=$bv->get_list_albumanh($_GET["cat"]);
-		echo $config["httproot"];
 		foreach ($kq as $kq_item){
 			?>
 			<tr>

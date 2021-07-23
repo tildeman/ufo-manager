@@ -17,20 +17,6 @@ if (isset($_GET["baiviet"])){
 		);
 	}
 
-	/*
-	Kiểm tra quyền người dùng:
-	-	Cho phép tất cả nếu người dùng thuộc nhóm hệ thống (id=1)
-	-	Kiểm tra quyền chỉnh sửa bằng hàm floor($quyen/4)%2 khi là chủ sở hữu
-		-	Nếu có, cho phép chỉnh sửa toàn bộ
-		-	Nếu không, kiểm tra trong nhóm và quyền của nhóm
-	-	Kiểm tra quyền chỉnh sửa bằng hàm floor($quyen/2)%2 khi người dùng thuộc nhóm
-		-	Nếu có, cho phép chỉnh sửa toàn bộ ngoài quyền
-		-	Nếu không, bật chế độ chỉ đọc
-	-	Kiểm tra quyền chỉnh sửa bằng hàm $quyen%2 trong trường hợp còn lại
-		-	Nếu có, cho phép chỉnh sửa toàn bộ ngoài quyền
-	-	Nếu tất cả các trường hợp trên không thỏa mãn, bật ở chế độ chỉ đọc
-	*/
-
 	$edit_mode=0;
 	$user=$conn->query("SELECT * FROM ten_nguoi_dung WHERE ten='".$conn->real_escape_string($_SESSION["username"])."'")->fetch_array();
 	$uid=$user["id"];
@@ -39,12 +25,12 @@ if (isset($_GET["baiviet"])){
 
 	if (isset($_POST["submit_baiviet"])){
 		$category=implode(" ",$_POST["category"]);
-		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_POST["content"],$category);
+		$bv->insert_baiviet($_GET["baiviet"],$_POST["uri"],$_POST["name"],$_FILES["img_upload"],$_POST["content"],$category);
 		$prefill_result=$conn->query("SELECT * from bai_viet where id=".$conn->real_escape_string($_GET["baiviet"]))->fetch_array();
 	}
 	?>
 	<h1>Chỉnh sửa bài viết</h1>
-	<form method="post">
+	<form method="post" enctype="multipart/form-data">
 		<table class="std_table">
 			<tr>
 				<th>Tên thuộc tính</th>
@@ -52,11 +38,15 @@ if (isset($_GET["baiviet"])){
 			</tr>
 			<tr>
 				<td>Tên</td>
-				<td><input type="text" class="std_tbl_input" id="name" name="name" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["tieu_de"])?>"></td>
+				<td><input type="text" required class="std_tbl_input" id="name" name="name" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["tieu_de"])?>"></td>
 			</tr>
 			<tr>
 				<td>Tên trên URL</td>
-				<td><input type="text" class="std_tbl_input" id="uri" name="uri" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["uri"])?>"></td>
+				<td><input type="text" required class="std_tbl_input" id="uri" name="uri" <?=$edit_mode?"":"readonly"?> value="<?=htmlspecialchars($prefill_result["uri"])?>"></td>
+			</tr>
+			<tr>
+				<td>Ảnh</td>
+				<td><input type="file" name="img_upload" required></td>
 			</tr>
 			<tr>
 				<td>Nội dung</td>
@@ -150,7 +140,7 @@ else if (isset($_GET["cat"])){
 	<h1>Danh sách bài viết trong phân loại</h1>
 	<table class="std_table">
 		<tr>
-			<th>ID</th>
+			<th>Ảnh đại diện</th>
 			<th>Tên</th>
 			<th>Tác giả</th>
 		</tr>
@@ -159,7 +149,7 @@ else if (isset($_GET["cat"])){
 		foreach ($kq as $kq_item){
 			?>
 			<tr>
-				<td><?=$kq_item["id"]?></td>
+				<td><img src="<?=htmlspecialchars($config["upload_path"]."bai_viet/".$kq_item["phan_loai"]."-".$kq_item["uri"].".".$kq_item["ftype"])?>" class="repimg"></td>
 				<td><a href="?xmakereq=noidung&subreq=bai_viet&baiviet=<?=$kq_item["id"]?>"><?=$kq_item["tieu_de"]?></a></td>
 				<td><?=$conn->query("SELECT * FROM ten_nguoi_dung WHERE id=".$conn->real_escape_string($kq_item["tac_gia"]))->fetch_array()["ten"]?></td>
 			</tr>
