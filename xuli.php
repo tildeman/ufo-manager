@@ -10,16 +10,20 @@ if (isset($_GET["xmakereq"])){
 		case "tienich":
 			include "wrappers/tienich.php";
 			break;
+		case "chpwd":
+			include "wrappers/changepwd.php";
+			break;
 		case "logout":
 			session_start();
 			session_destroy();
 			header("Location: .");
 			break;
-		default:
-			echo "Quýt muôn năm";
 	}
 }
 else{
-	echo "Quýt muôn năm";
+	?>
+	<h1>Xin chào, <?=$_SESSION["username"]?></h1><br>
+	<a href="?xmakereq=chpwd">Đổi mật khẩu</a>
+	<?php
 }
 ?>

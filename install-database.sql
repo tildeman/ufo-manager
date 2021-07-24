@@ -116,8 +116,8 @@ CREATE TABLE `ten_nguoi_dung` (
 --
 
 INSERT INTO `ten_nguoi_dung` (`id`, `ten`, `pass`, `in_group`, `properties`) VALUES
-(1, 'root', '69c5fcebaa65b560eaf06c3fbeb481ae44b8d618', '1 2 3 4', 'sysuser cannot_be_deleted disabled'),
-(2, 'administrator', '69c5fcebaa65b560eaf06c3fbeb481ae44b8d618', '1 2 3 4', 'cannot_be_deleted');
+(1, 'root', '10a34637ad661d98ba3344717656fcc76209c2f8', '1 2 3 4', 'sysuser cannot_be_deleted disabled'),
+(2, 'administrator', '10a34637ad661d98ba3344717656fcc76209c2f8', '1 2 3 4', 'cannot_be_deleted');
 
 -- --------------------------------------------------------
 

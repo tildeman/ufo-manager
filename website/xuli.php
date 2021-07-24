@@ -7,7 +7,7 @@ if (isset($_GET["xmakereq"])){
 			foreach ($bvlist as $bvitem){
 				?>
 				<div class="bvitem">
-					<img src="../<?=urlencode($config["upload_path"]."bai_viet/".$bvitem["phan_loai"]."-".$bvitem["uri"].".".$bvitem["ftype"])?>">
+					<img src="<?=urlencode($localcfg["ufomgr_path"]."/".$config["upload_path"]."bai_viet/".$bvitem["phan_loai"]."-".$bvitem["uri"].".".$bvitem["ftype"])?>">
 					<a style="font-size: 24pt;font-weight: bold;" href="?xmakereq=bvread&bv=<?=urlencode($bvitem["uri"])?>"><?=$bvitem["tieu_de"]?></a><br>
 					<?=substr(htmlspecialchars($bvitem["noi_dung"]),0,75)?>
 				</div>
@@ -25,7 +25,7 @@ if (isset($_GET["xmakereq"])){
 			$bvlist=$conn->query("SELECT * FROM album_anh WHERE phan_loai LIKE '".$conn->real_escape_string($cid)."' OR phan_loai LIKE '".$conn->real_escape_string($cid)." %' OR phan_loai LIKE '% ".$conn->real_escape_string($cid)." %' OR phan_loai LIKE '% ".$conn->real_escape_string($cid)."'");
 			foreach ($bvlist as $bvitem){
 				?>
-				<img src="../<?=urlencode($config["upload_path"]."album_anh/".$bvitem["phan_loai"]."-".$bvitem["uri"].".".$bvitem["ftype"])?>" style="float:left;">
+				<img src="<?=urlencode($localcfg["ufomgr_path"]."/".$config["upload_path"]."album_anh/".$bvitem["phan_loai"]."-".$bvitem["uri"].".".$bvitem["ftype"])?>" style="float:left;">
 				<?php
 			}
 			break;
@@ -35,7 +35,7 @@ if (isset($_GET["xmakereq"])){
 			foreach ($bvlist as $bvitem){
 				?>
 				<div class="spitem">
-					<img src="../<?=urlencode($config["upload_path"]."san_pham/".$bvitem["phan_loai"]."-".$bvitem["uri"].".".$bvitem["ftype"])?>">
+					<img src="<?=$localcfg["ufomgr_path"]."/".urlencode($config["upload_path"]."san_pham/".$bvitem["phan_loai"]."-".$bvitem["uri"].".".$bvitem["ftype"])?>">
 					<span style="font-size: 24pt;font-weight: bold;"><?=htmlspecialchars($bvitem["ten"])?></span><br>
 					Giá: <?=htmlspecialchars($bvitem["gia"])?>đ<br>
 					Hãng: <?=htmlspecialchars($bvitem["hang"])?>đ<br>

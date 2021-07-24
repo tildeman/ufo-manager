@@ -2,6 +2,10 @@
 require("config.php");
 session_start();
 $conn=new mysqli($config["db_server"],$config["db_uname"],$config["db_pass"],$config["db_name"]);
+function is_valid($uname,$pass){
+	global $conn;
+	return $conn->query("SELECT * FROM ten_nguoi_dung WHERE ten='".$conn->real_escape_string($uname)."' AND pass='".$conn->real_escape_string(sha1(sha1($pass)))."'")->num_rows;
+}
 if (isset($_POST["username"])&&isset($_POST["password"])){
 	$uname_query=$conn->query("SELECT * FROM ten_nguoi_dung WHERE ten='".$conn->real_escape_string($_POST["username"])."'");
 	if ($uname_query->num_rows==0){
@@ -48,7 +52,7 @@ if (isset($_POST["username"])&&isset($_POST["password"])){
 			<div class="notification_error notification"><span><?=$error?></span></div>
 			<?php
 		}
-		if (isset($_SESSION["username"])&&isset($_SESSION["password"])){
+		if (isset($_SESSION["username"])&&isset($_SESSION["password"])&&is_valid($_SESSION["username"],$_SESSION["password"])){
 			?>
 			<div id="menubar">
 				<a href=".">
