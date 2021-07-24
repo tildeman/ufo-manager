@@ -1,5 +1,5 @@
 <?php
-require "../config.php";
+require "config.php";
 session_start();
 $conn=new mysqli($config["db_server"],$config["db_uname"],$config["db_pass"],$config["db_name"]);
 $settings=json_decode(file_get_contents("config.json"),1);
